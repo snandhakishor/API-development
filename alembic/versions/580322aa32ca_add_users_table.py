@@ -22,7 +22,7 @@ def upgrade() -> None:
     op.create_table('users', sa.Column('id',sa.Integer(), primary_key=True, nullable=False),
                         sa.Column('email', sa.String(255), nullable=False),
                         sa.Column('password', sa.String(255), nullable=False),
-                        sa.Column('created_at', sa.DateTime(timezone=True), default=sa.func.now()))
+                        sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.func.now()))
     print("this file runs")
     pass
 
