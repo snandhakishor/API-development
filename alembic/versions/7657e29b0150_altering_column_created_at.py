@@ -20,7 +20,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 def upgrade() -> None:
     """Upgrade schema."""
-    op.alter_column('posts', 'created', nullable=False, existing_type= sa.DateTime(timezone=True),
+    op.alter_column('posts', 'created', existing_nullable=False ,existing_type= sa.DateTime(timezone=True),
                     server_default=sa.func.now(), new_column_name='created_at')
     pass
 
@@ -28,6 +28,6 @@ def upgrade() -> None:
 def downgrade() -> None:
     """Downgrade schema."""
     op.alter_column('posts','created', existing_type=sa.DateTime(timezone=True),
-                    server_default=None, new_column_name='created')
+                    new_column_name='created')
 
     pass
